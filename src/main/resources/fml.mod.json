@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "goki_stats",
+  "version": "1.0.0",
+  "name": "GokiStats",
+  "authors": [
+     "Lasm_Gratel",
+     "NekoCaffeine",
+     "huanglanmu"
+  ],
+  "contact": {
+    "homepage": "https://minecraftistooeasy.github.io/",
+    "sources": "https://github.com/MinecraftIsTooEasy/goki_stats"
+  },
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.moddedmite.mitemod.goki_stats.GokiStats"
+    ],
+    "registry": [
+    ]
+  },
+  "mixins": [
+    "goki_stats.mixins.json"
+  ],
+  "depends": {
+    "fishmodloader": ">=3.4.0",
+    "minecraft": "1.6.4-mite",
+    "java": ">=17",
+    "rusted_iron_core": ">=1.5.5"
+  },
+  "suggests": {
+  },
+  "accessWidener": "goki_stats.accesswidener"
+}

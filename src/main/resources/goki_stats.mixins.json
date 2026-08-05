@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "com.moddedmite.mitemod.goki_stats.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"target": "DEFAULT",
+	"mixins": [
+		"MixinEntityPlayer"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
