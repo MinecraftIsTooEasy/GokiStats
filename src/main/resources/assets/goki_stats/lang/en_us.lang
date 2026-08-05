@@ -1,0 +1,89 @@
+key.categories.goki_stats=GokiStats
+
+grpg_Mining.name=Mining Proficiency
+grpg_Digging.name=Digging Proficiency
+grpg_Chopping.name=Chopping Proficiency
+grpg_Trimming.name=Trimming Proficiency
+grpg_Protection.name=Protection
+grpg_Tempering.name=Tempering
+grpg_ToughSkin.name=Tough Skin
+grpg_FeatherFall.name=Feather Fall
+grpg_LeaperH.name=LeaperH
+grpg_LeaperV.name=LeaperV
+grpg_Swimming.name=Athleticism
+grpg_Climbing.name=Climbing
+grpg_Pugilism.name=Pugilism
+grpg_Swordsmanship.name=Swordsmanship
+grpg_Bowmanship.name=Bowmanship
+grpg_Reaper.name=Reaper
+grpg_Steady_Guard.name=Steady Guard
+grpg_Stealth.name=Stealth
+grpg_Roll.name=Roll
+grpg_Health.name=Additional Health
+
+grpg_Mining.des=Mine %f%% faster.
+grpg_Digging.des=Dig %f%% faster.
+grpg_Chopping.des=Chop %f%% faster.
+grpg_Protection.des=Take %f%% less damage from most enemy attacks.
+grpg_Tempering.des=Take %f%% less damage from fire and lava.
+grpg_ToughSkin.des=Take %f%% less damage from explosions.
+grpg_FeatherFall.des=Take %1$f%% less damage from falling more than %2$f blocks;
+grpg_LeaperH.des=Jump %f%% farther when sprinting.
+grpg_LeaperV.des=Jump %f%% higher when sprinting.
+grpg_Swimming.des0=Swim %f%% faster.
+grpg_Swimming.des1=I do nothing when Player API is loaded!
+grpg_Climbing.des0=Climb %f%% faster.
+grpg_Climbing.des1=I do nothing when Player API is loaded!
+grpg_Pugilism.des=Deal %f%% more damage with your tree punchers.
+grpg_Swordsmanship.des=Deal %f%% more damage with swords.
+grpg_Bowmanship.des=Deal %f%% more damage with a bow.
+grpg_Reaper.des=%1$f%% chance to instantly kill enemies with less than %2$f health;
+grpg_Steady_Guard.des=%f%% less knockback when blocking.
+grpg_Stealth.des=Move %1$f%% faster and reap %2$f%%more often (%3$f%%) when sneaking.;
+grpg_Roll.des=%f%% chance to avoid damage and counterattack enemy.
+grpg_Health.des=Get %f more health.
+
+grpg_Roll.message=*Avoided*
+grpg_Roll.knockback=*Knockback*
+
+ui.cost.name=Cost  
+ui.return.name=Return  
+ui.max.name=Max!
+ui.currentxp.name=Current xp: 
+ui.opmenu.name=Open Stats Menu
+ui.hover.name=Click to upgrade, or Ctrl+Click to downgrade
+ui.revert.name=Click to downgrade
+ui.reverted.name=Downgraded levels: %d/%s
+ui.infinite.name=Infinite
+ui.norevert.name=You cannot downgrade anymore!
+
+command.gokistats.usage=/gokistats <reload|gui> [player]
+command.gokistats.reloaded=Reloaded gokistats configuration file.
+command.gokistats.playeronly=This command should be only used by player
+command.gokistats.unknown=Unknown sub-command
+
+config.menu.name.GokiStats=GokiStats
+config.menu.comment.GokiStats=GokiStats stats mod configuration
+
+config.name.keyBindingEnabled=Keybinding Enabled
+config.comment.keyBindingEnabled=Enable keybindings for stats menu
+config.name.initiativeSync=Initiative Sync
+config.comment.initiativeSync=Sync stats on player join
+config.name.syncTicks=Sync Ticks
+config.comment.syncTicks=Sync interval in ticks (min 20)
+config.name.globalCostMultiplier=Global Cost Multiplier
+config.comment.globalCostMultiplier=Global multiplier for stat upgrade cost
+config.name.globalLimitMultiplier=Global Limit Multiplier
+config.comment.globalLimitMultiplier=Global multiplier for stat level limit
+config.name.globalBonusMultiplier=Global Bonus Multiplier
+config.comment.globalBonusMultiplier=Global multiplier for stat bonus
+config.name.loseStatsOnDeath=Lose Stats On Death
+config.comment.loseStatsOnDeath=Lose stat levels on death
+config.name.loseStatsMultiplier=Lose Stats Multiplier
+config.comment.loseStatsMultiplier=Multiplier for stat loss on death (0-1)
+config.name.globalMaxRevertLevel=Global Max Revert Level
+config.comment.globalMaxRevertLevel=Max revert level globally (-1 = unlimited)
+config.name.globalRevertFactor=Global Revert Factor
+config.comment.globalRevertFactor=Factor for XP return when reverting (0-1)
+config.name.reaperLimit=Reaper Limit
+config.comment.reaperLimit=Max health for reaper skill to instakill

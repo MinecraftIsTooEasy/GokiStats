@@ -1,0 +1,10 @@
+{
+  "reaper": {
+    "category": "master",
+    "sounds": [
+      "goki_stats:reaper1",
+      "goki_stats:reaper2",
+      "goki_stats:reaper3"
+    ]
+  }
+}
