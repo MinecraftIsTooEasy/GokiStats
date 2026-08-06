@@ -1,6 +1,5 @@
 package com.moddedmite.mitemod.goki_stats.common.stat.tool;
 
-import net.minecraft.Item;
 import net.minecraft.ItemStack;
 import net.minecraft.ItemSword;
 
@@ -26,7 +25,6 @@ public class StatSwordsmanship extends ToolSpecificStat {
 
     @Override
     public String[] getDefaultSupportedItems() {
-        return new String[]
-                {Item.swordIron.itemID + ":0", Item.swordGold.itemID + ":0"};
+        return new String[0];
     }
 }

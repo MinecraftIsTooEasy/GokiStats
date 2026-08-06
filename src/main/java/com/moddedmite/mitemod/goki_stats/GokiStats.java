@@ -40,16 +40,6 @@ public class GokiStats implements ModInitializer {
         com.moddedmite.mitemod.goki_stats.common.config.ConfigManager.INSTANCE.init(
                 new File(FabricUtil.getConfigDirectory().toFile(), "gokistats"));
 
-        // 确保 Block 类在 Item 类之前初始化
-        // MITE 中 Item.<clinit> 会通过 ItemShovel 触发 Block.<clinit>，
-        // 而 Block.<clinit> 会触发 StatList → AchievementList，
-        // 如果 Item 尚未初始化完成，AchievementList 中的 ItemStack 会因 Item 为 null 而 NPE
-        try {
-            Class.forName("net.minecraft.Block");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
         // 加载所有技能配置（填充 supports/damageSources 列表等）
         StatBase.stats.forEach(Configurable::reloadConfig);
 
