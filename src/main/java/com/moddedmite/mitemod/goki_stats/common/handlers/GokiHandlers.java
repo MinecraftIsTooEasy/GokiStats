@@ -172,7 +172,7 @@ public class GokiHandlers {
                 float reapChance = reap + reapBonus;
                 if (player.getRNG().nextFloat() <= reapChance) {
                     player.onEnchantmentCritical(mob);
-                    player.worldObj.playSoundEffect(mob.posX, mob.posY, mob.posZ, GokiSounds.REAPER, 1.0f, 1.0f);
+                    player.worldObj.playSoundEffect(mob.posX, mob.posY, mob.posZ, GokiSounds.REAPER.toString(), 1.0f, 1.0f);
                     damage.setAmount(100000.0F);
                 }
             }
