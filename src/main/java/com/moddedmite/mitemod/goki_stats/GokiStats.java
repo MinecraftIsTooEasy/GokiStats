@@ -3,14 +3,12 @@ package com.moddedmite.mitemod.goki_stats;
 import com.moddedmite.mitemod.goki_stats.api.stat.StatBase;
 import com.moddedmite.mitemod.goki_stats.api.stat.Stats;
 import com.moddedmite.mitemod.goki_stats.client.GokiKeyHandler;
-import com.moddedmite.mitemod.goki_stats.common.StatsCommand;
 import com.moddedmite.mitemod.goki_stats.common.config.Configurable;
 import com.moddedmite.mitemod.goki_stats.common.config.GokiStatsConfig;
 import com.moddedmite.mitemod.goki_stats.common.handlers.GokiHandlers;
 import com.moddedmite.mitemod.goki_stats.common.init.GokiSounds;
 import com.moddedmite.mitemod.goki_stats.common.network.GokiNetwork;
 import fi.dy.masa.malilib.config.ConfigManager;
-import moddedmite.rustedironcore.api.event.Handlers;
 import moddedmite.rustedironcore.api.util.FabricUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -54,9 +52,6 @@ public class GokiStats implements ModInitializer {
 
         // 注册 ManyLib 配置
         ConfigManager.getInstance().registerConfig(GokiStatsConfig.getInstance());
-
-        // 注册命令
-        Handlers.Command.register(event -> event.register(new StatsCommand()));
 
         // 注册按键绑定（仅客户端）
         registerKeybinding();

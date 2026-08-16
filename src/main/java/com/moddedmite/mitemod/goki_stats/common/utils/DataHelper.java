@@ -41,6 +41,7 @@ public class DataHelper {
         } else {
             playerStatNBT.put(player, new NBTTagCompound());
         }
+        resetMaxHealth(player);
     }
 
     public static boolean canPlayerRevertStat(EntityPlayer player, StatBase stat) {
@@ -88,15 +89,11 @@ public class DataHelper {
     }
 
     public static void addMaxHealth(EntityPlayer player, int amount) {
-        AttributeInstance attribute = player.getEntityAttribute(SharedMonsterAttributes.maxHealth);
-        Collection<AttributeModifier> collection = attribute.func_111122_c();
-
-        if (collection != null) {
-            for (AttributeModifier attributemodifier : Lists.newArrayList(collection)) {
-                attribute.removeModifier(attributemodifier);
-            }
-        }
-        attribute.setAttribute(20 + amount);
+        // 不修改 SharedMonsterAttributes.maxHealth
+        // MITE 使用 getHealthLimit() 计算最大生命值，不需要修改此属性
+        // 保留此方法以兼容现有调用，但不再修改属性值
+        // 这样 Bread-Skin 等模组读取 SharedMonsterAttributes.maxHealth 时得到默认值 20
+        // 饱和度显示位置不会因生命值增加而偏移
     }
 
     public static void resetMaxHealth(EntityPlayer player) {

@@ -49,7 +49,7 @@ public class C2SStatModify implements Packet {
             return;
 
         int cost = stat.getCost(level + this.amount - 1);
-        int currentXP = DataHelper.getXPTotal(playerMP.getExperienceLevel(), playerMP.getLevelProgress());
+        int currentXP = DataHelper.getXPTotal(playerMP);
 
         int reverted = DataHelper.getPlayerRevertStatLevel(playerMP, stat);
         reverted = Math.max(reverted - this.amount, 0);
@@ -62,17 +62,11 @@ public class C2SStatModify implements Packet {
             // Upgrade: requires enough XP
             if (currentXP >= cost) {
                 DataHelper.setPlayerStatLevel(playerMP, stat, level + this.amount);
-                if (stat instanceof StatMaxHealth) {
-                    DataHelper.addMaxHealth(playerMP, (int) stat.getBonus(level) + this.amount);
-                }
                 DataHelper.setPlayersExpTo(playerMP, currentXP - cost);
             }
         } else {
             // Downgrade: always allowed (level > 0 and revert limit already checked)
             DataHelper.setPlayerStatLevel(playerMP, stat, level + this.amount);
-            if (stat instanceof StatMaxHealth) {
-                DataHelper.addMaxHealth(playerMP, (int) stat.getBonus(level) + this.amount);
-            }
             DataHelper.setPlayersExpTo(playerMP,
                     currentXP + (int) (stat.getCost(level + this.amount + 1) * GokiConfig.globalModifiers.globalRevertFactor));
         }
