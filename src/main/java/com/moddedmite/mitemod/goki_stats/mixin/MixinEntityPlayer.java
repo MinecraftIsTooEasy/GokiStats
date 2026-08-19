@@ -33,7 +33,7 @@ public class MixinEntityPlayer {
         EntityPlayer self = (EntityPlayer) (Object) this;
         int statLevel = DataHelper.getPlayerStatLevel(self, Stats.MAX_HEALTH);
         if (statLevel > 0) {
-            return original + statLevel;
+            return original + Stats.MAX_HEALTH.getBonus(statLevel);
         }
         return original;
     }

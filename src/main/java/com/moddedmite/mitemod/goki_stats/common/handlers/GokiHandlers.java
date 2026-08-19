@@ -142,11 +142,13 @@ public class GokiHandlers {
             }
         }
 
+        float temperingBonus = (source.isFireDamage() || source.isLavaDamage())
+                ? Stats.TEMPERING.getBonus(player) : 0.0F;
+
         float damageMultiplier = 1.0F - (Stats.PROTECTION.getAppliedBonus(player,
                 source) + Stats.TOUGH_SKIN.getAppliedBonus(player,
                 source) + Stats.STAT_FEATHER_FALL.getAppliedBonus(player,
-                source) + Stats.TEMPERING.getAppliedBonus(player,
-                source));
+                source) + temperingBonus);
 
         damage.setAmount(damage.getAmount() * damageMultiplier);
     }
@@ -225,6 +227,9 @@ public class GokiHandlers {
             }
             return original * 2f;
         }
+        if (Stats.STEADY_GUARD.getBonus(player) > 0) {
+            return original * (1.0F - Stats.STEADY_GUARD.getBonus(player) / 100.0F);
+        }
         return original;
     }
 
@@ -266,7 +271,7 @@ public class GokiHandlers {
         }
 
         atinst = player.getEntityAttribute(SharedMonsterAttributes.knockbackResistance);
-        mod = new AttributeModifier(knockbackResistanceID, "KnockbackResistance", Stats.STEADY_GUARD.getBonus(player), 0);
+        mod = new AttributeModifier(knockbackResistanceID, "KnockbackResistance", Stats.STEADY_GUARD.getBonus(player) / 100.0F, 0);
         atinst.removeModifier(mod);
         if (player.isBlocking() && Stats.STEADY_GUARD.getBonus(player) > 0) {
             atinst.applyModifier(mod);
@@ -304,18 +309,6 @@ public class GokiHandlers {
     // ===== Helper Methods =====
 
     private static void handleTaskPlayerAPI(EntityPlayer player) {
-        if (player.isInWater() && !player.capabilities.isFlying) {
-            float multiplier = Math.max(0.0F,
-                    Stats.SWIMMING.getBonus(player));
-            if (multiplier > 0.0F) {
-                if (isJumping(player)) {
-                    player.jumpMovementFactor += multiplier;
-                } else {
-                    player.jumpMovementFactor += multiplier * 0.2F;
-                }
-            }
-        }
-
         if (player.isOnLadder() && !player.isSneaking()) {
             float multiplier = Stats.CLIMBING.getBonus(player);
             if (multiplier > 0.0F) {

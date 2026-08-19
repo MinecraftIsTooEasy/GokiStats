@@ -5,7 +5,6 @@ import com.moddedmite.mitemod.goki_stats.common.stat.StatReaper;
 import com.moddedmite.mitemod.goki_stats.common.stat.damage.*;
 import com.moddedmite.mitemod.goki_stats.common.stat.movement.StatClimbing;
 import com.moddedmite.mitemod.goki_stats.common.stat.movement.StatSteadyGuard;
-import com.moddedmite.mitemod.goki_stats.common.stat.movement.StatSwimming;
 import com.moddedmite.mitemod.goki_stats.common.stat.special.leaper.StatLeaperH;
 import com.moddedmite.mitemod.goki_stats.common.stat.special.leaper.StatLeaperV;
 import com.moddedmite.mitemod.goki_stats.common.stat.special.leaper.StatStealth;
@@ -26,7 +25,6 @@ public interface Stats {
     DamageSourceProtectionStat STAT_FEATHER_FALL = new StatFeatherFall(7, "grpg_FeatherFall", 10);
     StatBase LEAPER_H = new StatLeaperH(8, "grpg_LeaperH", 10);
     StatBase LEAPER_V = new StatLeaperV(9, "grpg_LeaperV", 10);
-    StatBase SWIMMING = new StatSwimming(10, "grpg_Swimming", 10);
     StatBase CLIMBING = new StatClimbing(11, "grpg_Climbing", 10);
     StatBase PUGILISM = new StatPugilism(12, "grpg_Pugilism", 10);
     ToolSpecificStat SWORDSMANSHIP = new StatSwordsmanship(13, "grpg_Swordsmanship", 10);
