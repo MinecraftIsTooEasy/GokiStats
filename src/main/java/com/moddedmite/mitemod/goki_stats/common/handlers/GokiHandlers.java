@@ -71,12 +71,12 @@ public class GokiHandlers {
 
             @Override
             public float onPlayerRawStrVsBlockModify(EntityPlayer player, Item tool, Block block, int metadata, float original) {
-                return handlePlayerRawStrVsBlock(player, tool, block, metadata, original);
+                return original;
             }
 
             @Override
             public float onPlayerStrVsBlockModify(EntityPlayer player, float original) {
-                return original;
+                return handlePlayerStrVsBlock(player, original);
             }
 
             @Override
@@ -190,13 +190,13 @@ public class GokiHandlers {
                 bonus = Math.round(original * Stats.SWORDSMANSHIP.getAppliedBonus(player, heldItem));
             }
         } else {
-            bonus = Math.round(original + Stats.PUGILISM.getBonus(player));
+            bonus = Math.round(original * Stats.PUGILISM.getBonus(player));
         }
 
         return original + bonus;
     }
 
-    private static float handlePlayerRawStrVsBlock(EntityPlayer player, Item tool, Block block, int metadata, float original) {
+    private static float handlePlayerStrVsBlock(EntityPlayer player, float original) {
         ItemStack heldItem = player.getHeldItemStack();
         float multiplier = 1.0F;
 

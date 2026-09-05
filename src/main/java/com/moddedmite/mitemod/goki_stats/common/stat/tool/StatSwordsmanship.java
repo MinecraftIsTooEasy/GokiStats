@@ -1,7 +1,8 @@
 package com.moddedmite.mitemod.goki_stats.common.stat.tool;
 
+import net.minecraft.Item;
 import net.minecraft.ItemStack;
-import net.minecraft.ItemSword;
+import net.minecraft.ItemTool;
 
 public class StatSwordsmanship extends ToolSpecificStat {
     public StatSwordsmanship(int id, String key, int limit) {
@@ -15,7 +16,9 @@ public class StatSwordsmanship extends ToolSpecificStat {
 
     @Override
     public boolean isItemSupported(ItemStack item) {
-        return super.isItemSupported(item) || item.getItem() instanceof ItemSword;
+        if (super.isItemSupported(item)) return true;
+        Item it = item.getItem();
+        return it instanceof ItemTool;
     }
 
     @Override
