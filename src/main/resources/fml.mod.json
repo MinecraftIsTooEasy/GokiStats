@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "goki_stats",
-  "version": "1.0.4-fix",
+  "version": "1.0.5",
   "name": "GokiStats",
   "authors": [
      "Lasm_Gratel",
