@@ -127,7 +127,7 @@ public class GokiHandlers {
     private static void handlePlayerReceiveDamage(EntityPlayer player, Damage damage) {
         DamageSource source = damage.getSource();
 
-        if (!source.isFireDamage() && !source.isUnblockable()) {
+        if (source.getImmediateEntity() != null) {
             if (player.worldObj.rand.nextFloat() >= 1.0f - Stats.ROLL.getBonus(player)) {
                 damage.setAmount(0);
 
