@@ -10,6 +10,7 @@ import com.moddedmite.mitemod.goki_stats.common.network.S2CSyncAll;
 import com.moddedmite.mitemod.goki_stats.common.utils.DataHelper;
 import moddedmite.rustedironcore.api.event.Handlers;
 import moddedmite.rustedironcore.api.event.events.PlayerCrossDimensionEvent;
+import moddedmite.rustedironcore.api.event.events.PlayerLoggedInEvent;
 import moddedmite.rustedironcore.api.event.events.PlayerRespawnEvent;
 import moddedmite.rustedironcore.api.event.listener.ICombatListener;
 import moddedmite.rustedironcore.api.event.listener.IEntityEventListener;
@@ -110,6 +111,14 @@ public class GokiHandlers {
         });
 
         Handlers.PlayerEvent.register(new IPlayerEventListener() {
+            @Override
+            public void onPlayerLoggedIn(PlayerLoggedInEvent event) {
+                ServerPlayer serverPlayer = event.player();
+                if (!serverPlayer.worldObj.isRemote) {
+                    GokiNetwork.sendToClient(serverPlayer, new S2CSyncAll(serverPlayer));
+                }
+            }
+
             @Override
             public void onPlayerRespawn(PlayerRespawnEvent event) {
                 handlePlayerRespawn(event);

@@ -1,6 +1,7 @@
 package com.moddedmite.mitemod.goki_stats.common.utils;
 
 import com.google.common.collect.Lists;
+import com.moddedmite.mitemod.goki_stats.api.IGokiStatsPlayer;
 import com.moddedmite.mitemod.goki_stats.api.stat.StatBase;
 import com.moddedmite.mitemod.goki_stats.api.stat.Stats;
 import com.moddedmite.mitemod.goki_stats.common.config.GokiConfig;
@@ -17,31 +18,13 @@ import net.minecraft.PotionEffect;
 import net.minecraft.DamageSource;
 
 import java.util.Collection;
-import java.util.WeakHashMap;
 import java.util.function.IntFunction;
 
 public class DataHelper {
-    private static final WeakHashMap<EntityPlayer, NBTTagCompound> playerStatNBT = new WeakHashMap<>();
-    private static final String STAT_TAG = "gokistats_Stats";
 
     public static NBTTagCompound getPlayerPersistentNBT(EntityPlayer player) {
-        return playerStatNBT.computeIfAbsent(player, k -> new NBTTagCompound());
-    }
-
-    public static void saveToNBT(EntityPlayer player, NBTTagCompound compound) {
-        NBTTagCompound statsNBT = playerStatNBT.get(player);
-        if (statsNBT != null) {
-            compound.setCompoundTag(STAT_TAG, statsNBT);
-        }
-    }
-
-    public static void loadFromNBT(EntityPlayer player, NBTTagCompound compound) {
-        if (compound.hasKey(STAT_TAG)) {
-            playerStatNBT.put(player, compound.getCompoundTag(STAT_TAG));
-        } else {
-            playerStatNBT.put(player, new NBTTagCompound());
-        }
-        resetMaxHealth(player);
+        NBTTagCompound nbt = ((IGokiStatsPlayer) player).gokiStats$getStatsNBT();
+        return nbt != null ? nbt : new NBTTagCompound();
     }
 
     public static boolean canPlayerRevertStat(EntityPlayer player, StatBase stat) {
