@@ -25,23 +25,41 @@ public class MixinEntityPlayer implements IGokiStatsPlayer {
     @Override
     @Unique
     public NBTTagCompound gokiStats$getStatsNBT() {
+        if (this.gokiStatsNBT == null) {
+            this.gokiStatsNBT = new NBTTagCompound();
+        }
         return this.gokiStatsNBT;
+    }
+
+    @Override
+    @Unique
+    public void gokiStats$setStatsNBT(NBTTagCompound nbt) {
+        this.gokiStatsNBT = nbt != null ? nbt : new NBTTagCompound();
     }
 
     @Inject(method = "writeEntityToNBT", at = @At("TAIL"))
     private void onWriteEntityToNBT(NBTTagCompound compound, CallbackInfo ci) {
-        compound.setCompoundTag("gokistats_Stats", this.gokiStatsNBT);
+        compound.setCompoundTag("gokistats_Stats", this.gokiStats$getStatsNBT());
     }
 
     @Inject(method = "readEntityFromNBT", at = @At("TAIL"))
     private void onReadEntityFromNBT(NBTTagCompound compound, CallbackInfo ci) {
-        if (compound.hasKey("gokistats_Stats")) {
-            this.gokiStatsNBT = compound.getCompoundTag("gokistats_Stats");
-        } else {
-            this.gokiStatsNBT = new NBTTagCompound();
+        if (compound.hasKey("gokistats_Stats") && compound.getTag("gokistats_Stats") instanceof NBTTagCompound) {
+            this.gokiStatsNBT = (NBTTagCompound) compound.getCompoundTag("gokistats_Stats").copy();
+            EntityPlayer self = (EntityPlayer) (Object) this;
+            DataHelper.resetMaxHealth(self);
         }
-        EntityPlayer self = (EntityPlayer) (Object) this;
-        DataHelper.resetMaxHealth(self);
+    }
+
+    /**
+     * 玩家死亡重生等场景会新建实体并调用 clonePlayer，原版只复制背包/经验/血量，
+     * 不会复制技能数据，这里补上（与 RustedIronCore 处理 FirstLogin 的做法一致）。
+     */
+    @Inject(method = "clonePlayer", at = @At("RETURN"))
+    private void onClonePlayer(EntityPlayer original, boolean keepInventory, CallbackInfo ci) {
+        NBTTagCompound nbt = ((IGokiStatsPlayer) original).gokiStats$getStatsNBT();
+        this.gokiStats$setStatsNBT((NBTTagCompound) nbt.copy());
+        DataHelper.resetMaxHealth((EntityPlayer) (Object) this);
     }
 
     @ModifyReturnValue(method = "getHealthLimit()F", at = @At("RETURN"))

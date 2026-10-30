@@ -5,6 +5,7 @@
 	"target": "DEFAULT",
 	"mixins": [
 		"MixinEntityPlayer",
+		"MixinServerPlayer",
 		"MixinGuiIngame"
 	],
 	"injectors": {

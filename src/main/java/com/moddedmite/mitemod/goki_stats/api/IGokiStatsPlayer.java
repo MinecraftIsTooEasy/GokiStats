@@ -8,4 +8,6 @@ import net.minecraft.NBTTagCompound;
  */
 public interface IGokiStatsPlayer {
     NBTTagCompound gokiStats$getStatsNBT();
+
+    void gokiStats$setStatsNBT(NBTTagCompound nbt);
 }
