@@ -52,6 +52,9 @@ public class GokiStats implements ModInitializer {
 
         // 注册 ManyLib 配置
         ConfigManager.getInstance().registerConfig(GokiStatsConfig.getInstance());
+        // ManyLib 只在客户端加载世界时调用 loadAllConfigs，专用服务端永远不会触发，
+        // 这里主动读取一次，保证服务端也读取 config/GokiStats.json 而不是一直用默认值。
+        GokiStatsConfig.getInstance().load();
 
         // 注册按键绑定（仅客户端）
         registerKeybinding();

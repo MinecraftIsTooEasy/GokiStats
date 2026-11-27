@@ -39,6 +39,10 @@ public class ConfigManager {
         return configMap.containsKey(key);
     }
 
+    public boolean configFileExists(String key) {
+        return configDir != null && new File(configDir, key + ".json").exists();
+    }
+
     public <T> T getOrCreateConfig(String key, T defaultConfig) {
         if (configMap.containsKey(key)) {
             return (T) configMap.get(key);
@@ -77,7 +81,8 @@ public class ConfigManager {
                 if (config != null) {
                     configMap.put(key, config);
                 }
-            } catch (IOException e) {
+            } catch (IOException | RuntimeException e) {
+                // 文件损坏时保留内存中的默认配置, 不让整个 mod 在启动阶段崩掉
                 e.printStackTrace();
             }
         }
